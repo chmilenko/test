@@ -1,6 +1,72 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "../../store";
+import { selectRegisterFormError } from "./selectors";
+import { register, resetRegisterErrorForm } from "./authSlice";
 
 function Registration(): JSX.Element {
+  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordRepeat, setPasswordRepeat] = useState("");
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const error = useSelector(selectRegisterFormError);
+
+  const handleSubmit = React.useCallback(
+    async (event: React.FormEvent) => {
+      event.preventDefault();
+
+      const dispatchResult = await dispatch(
+        register({
+          login,
+          email,
+          password,
+          passwordRepeat,
+        })
+      );
+
+      if (register.fulfilled.match(dispatchResult)) {
+        navigate("/");
+      }
+    },
+    [dispatch, email, login, navigate, password, passwordRepeat]
+  );
+
+  const handleLoginChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setLogin(event.target.value);
+      dispatch(resetRegisterErrorForm());
+    },
+    [dispatch]
+  );
+
+  const handleEmailChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setEmail(event.target.value);
+      dispatch(resetRegisterErrorForm());
+    },
+    [dispatch]
+  );
+
+  const handlePasswordChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setPassword(event.target.value);
+      dispatch(resetRegisterErrorForm());
+    },
+    [dispatch]
+  );
+
+  const handlePasswordRepeatChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setPasswordRepeat(event.target.value);
+      dispatch(resetRegisterErrorForm());
+    },
+    [dispatch]
+  );
+
   return (
     <div>
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -11,7 +77,7 @@ function Registration(): JSX.Element {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="login"
@@ -26,8 +92,8 @@ function Registration(): JSX.Element {
                     required
                     autoComplete="on"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-2 text-lg"
-                    // value={login}
-                    // onChange={handleLoginChange}
+                    value={login}
+                    onChange={handleLoginChange}
                   />
                 </div>
               </label>
@@ -46,8 +112,8 @@ function Registration(): JSX.Element {
                     pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
                     autoComplete="on"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-2 text-lg"
-                    // value={email}
-                    // onChange={handleEmailChange}
+                    value={email}
+                    onChange={handleEmailChange}
                   />
                 </div>
               </label>
@@ -66,8 +132,8 @@ function Registration(): JSX.Element {
                     required
                     autoComplete="on"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-2 text-lg"
-                    // value={password}
-                    // onChange={handlePasswordChange}
+                    value={password}
+                    onChange={handlePasswordChange}
                   />
                 </div>
               </label>
@@ -86,8 +152,8 @@ function Registration(): JSX.Element {
                     required
                     autoComplete="on"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-2 text-lg"
-                    // value={passwordRepeat}
-                    // onChange={handlePasswordRepeatChange}
+                    value={passwordRepeat}
+                    onChange={handlePasswordRepeatChange}
                   />
                 </div>
               </label>
@@ -102,7 +168,7 @@ function Registration(): JSX.Element {
               </button>
             </div>
             <div className="flex justify-center">
-              <p className="text-red-600"></p>
+              <p className="text-red-600">{error}</p>
             </div>
           </form>
         </div>
