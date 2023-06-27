@@ -41,7 +41,7 @@ export const register = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk("auth/logout", api.logout);
+export const logout = createAsyncThunk("auth/logout", () => api.logout);
 
 const authSlice = createSlice({
   name: "auth",
@@ -76,7 +76,7 @@ const authSlice = createSlice({
       .addCase(register.rejected, (state, action) => {
         state.registerFormError = action.error.message;
       })
-      .addCase(logout.fulfilled, (state) => {
+      .addCase(logout.fulfilled, (state, action) => {
         state.user = undefined;
       });
   },

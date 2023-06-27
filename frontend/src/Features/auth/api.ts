@@ -41,7 +41,6 @@ export async function register(data: RegisterData): Promise<User> {
 }
 
 export async function logout(): Promise<void> {
-  await fetch("/api/auth/logout", {
-    method: "POST",
-  });
+  const res = await fetch("/api/auth/logout");
+  return res.json();
 }
