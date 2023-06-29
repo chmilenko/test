@@ -11,7 +11,6 @@ function Form(): JSX.Element {
   const [open, setOpen] = useState(false);
 
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
 
   const handleClickOpenModal = () => {
     setOpen((prev) => !prev);
@@ -49,21 +48,28 @@ function Form(): JSX.Element {
               placeholder="Введите имя"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
+              type="text"
             ></input>
             <input
               placeholder="Введите описание"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              type="text"
             ></input>
             <input
               placeholder="Загрузите фото"
               value={img}
               onChange={(e) => setImg(e.target.value)}
+              type="text"
+              required
             ></input>
             <input
               placeholder="Укажите цену"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+              type="text"
+              required
             ></input>
             <button type="submit">Добавить товар</button>
             <button type="button" onClick={handleClickCloseModal}>
