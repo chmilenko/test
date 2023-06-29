@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import Product, { ProductId } from "./types/productType";
+import { addNewSavedProduct } from "../Favorites/api";
 
 function ProductCard({
   product,
@@ -13,8 +14,8 @@ function ProductCard({
   product: Product;
   onDelete: (id: ProductId) => void;
 }): JSX.Element {
-  
-  const handleRemove = React.useCallback(
+ 
+  const handleRemove = useCallback(
     (event: React.MouseEvent) => {
       event.stopPropagation();
       event.preventDefault();
@@ -22,6 +23,11 @@ function ProductCard({
     },
     [onDelete, product]
   );
+
+  const handleAddFavorite = useCallback((event: React.MouseEvent) => {
+    event.preventDefault();
+    addNewSavedProduct(product);
+  }, []);
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -45,7 +51,12 @@ function ProductCard({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          type="button"
+          onClick={handleAddFavorite}
+        >
           Добавить в избранное
         </Button>
         <Button type="button" onClick={handleRemove}>

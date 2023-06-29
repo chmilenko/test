@@ -5,11 +5,12 @@ import { RootState, useAppDispatch } from "../../store";
 import { useSelector } from "react-redux";
 import { delProduct, loadProductList } from "./productSlice";
 import { ProductId } from "./types/productType";
+import { addNewSavedProduct } from "../Favorites/api";
 
 function ProductView(): JSX.Element {
   const { products } = useSelector((store: RootState) => store.products);
+
   const dispatch = useAppDispatch();
-  console.log(products);
 
   useEffect(() => {
     dispatch(loadProductList());

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { State } from "./types/State";
+import { State } from "./types/StateProducts";
 import * as api from "./api";
 import Product, { ProductId } from "./types/productType";
 
@@ -50,8 +50,7 @@ const productSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(delProduct.fulfilled, (state, action) => {
-        console.log(action.payload);
-       state.products = state.products.filter(
+        state.products = state.products.filter(
           (product) => product.id !== Number(action.payload)
         );
       })

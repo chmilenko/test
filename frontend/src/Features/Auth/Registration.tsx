@@ -70,15 +70,13 @@ function Registration(): JSX.Element {
   return (
     <div>
       <div>
-        <div>
-          <h2>Registration</h2>
-        </div>
+        <div></div>
 
         <div>
           <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="login">
-                Login
+                Логин
                 <div className="mt-2">
                   <input
                     id="login"
@@ -94,7 +92,7 @@ function Registration(): JSX.Element {
             </div>
             <div>
               <label htmlFor="email">
-                Email address
+                Почта
                 <div className="mt-2">
                   <input
                     id="email"
@@ -110,7 +108,7 @@ function Registration(): JSX.Element {
             </div>
             <div>
               <label htmlFor="password">
-                Password
+                Пароль
                 <div className="mt-2">
                   <input
                     id="password"
@@ -126,7 +124,7 @@ function Registration(): JSX.Element {
             </div>
             <div>
               <label htmlFor="password">
-                Repeat Password
+                Повторите пароль
                 <div className="mt-2">
                   <input
                     id="password"

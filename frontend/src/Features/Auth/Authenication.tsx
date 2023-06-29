@@ -54,9 +54,7 @@ function Authenication(): JSX.Element {
   return (
     <div>
       <div>
-        <div>
-          <h2>Войти</h2>
-        </div>
+        <div></div>
         <div>
           <form onSubmit={handleSubmit}>
             <div>
