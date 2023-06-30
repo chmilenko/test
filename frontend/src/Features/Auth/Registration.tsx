@@ -68,86 +68,86 @@ function Registration(): JSX.Element {
   );
 
   return (
-    <div>
-      <div>
-        <div></div>
+    <div className="divFormAddProduct">
+      <form onSubmit={handleSubmit} className="formAddProduct">
+        <div>
+          <label htmlFor="login">
+            <div className="mt-2">
+              <input
+                id="login"
+                name="login"
+                type="text"
+                required
+                autoComplete="on"
+                value={login}
+                onChange={handleLoginChange}
+                placeholder="Логин"
+                className="inputForm"
+              />
+            </div>
+          </label>
+        </div>
+        <div>
+          <label htmlFor="email">
+            <div className="mt-2">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
+                autoComplete="on"
+                value={email}
+                onChange={handleEmailChange}
+                placeholder="Почта"
+                className="inputForm"
+              />
+            </div>
+          </label>
+        </div>
+        <div>
+          <label htmlFor="password">
+            <div className="mt-2">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                autoComplete="on"
+                value={password}
+                onChange={handlePasswordChange}
+                placeholder="Пароль"
+                className="inputForm"
+              />
+            </div>
+          </label>
+        </div>
+        <div>
+          <label htmlFor="password">
+            <div className="mt-2">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                autoComplete="on"
+                value={passwordRepeat}
+                onChange={handlePasswordRepeatChange}
+                placeholder="Повторите пароль"
+                className="inputForm"
+              />
+            </div>
+          </label>
+        </div>
 
         <div>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="login">
-                Логин
-                <div className="mt-2">
-                  <input
-                    id="login"
-                    name="login"
-                    type="text"
-                    required
-                    autoComplete="on"
-                    value={login}
-                    onChange={handleLoginChange}
-                  />
-                </div>
-              </label>
-            </div>
-            <div>
-              <label htmlFor="email">
-                Почта
-                <div className="mt-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
-                    autoComplete="on"
-                    value={email}
-                    onChange={handleEmailChange}
-                  />
-                </div>
-              </label>
-            </div>
-            <div>
-              <label htmlFor="password">
-                Пароль
-                <div className="mt-2">
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    autoComplete="on"
-                    value={password}
-                    onChange={handlePasswordChange}
-                  />
-                </div>
-              </label>
-            </div>
-            <div>
-              <label htmlFor="password">
-                Повторите пароль
-                <div className="mt-2">
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    autoComplete="on"
-                    value={passwordRepeat}
-                    onChange={handlePasswordRepeatChange}
-                  />
-                </div>
-              </label>
-            </div>
-
-            <div>
-              <button type="submit">Зарегистрироваться</button>
-            </div>
-            <div>
-              <p>{error}</p>
-            </div>
-          </form>
+          <button type="submit" className="btnMain">
+            Зарегистрироваться
+          </button>
         </div>
-      </div>
+        <div>
+          <p>{error}</p>
+        </div>
+      </form>
     </div>
   );
 }

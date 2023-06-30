@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import Product, { ProductId } from "./types/productType";
 import { addNewSavedProduct } from "../Favorites/api";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 function ProductCard({
   product,
@@ -14,15 +16,18 @@ function ProductCard({
   product: Product;
   onDelete: (id: ProductId) => void;
 }): JSX.Element {
- 
-  const handleRemove = useCallback(
-    (event: React.MouseEvent) => {
-      event.stopPropagation();
-      event.preventDefault();
-      onDelete(product.id);
-    },
-    [onDelete, product]
-  );
+  const { user } = useSelector((store: RootState) => store.auth);
+  const clickDelete = () => {
+    alert("Только админ может удалять товар");
+  };
+  // const handleRemove = useCallback(
+  //   (event: React.MouseEvent) => {
+  //     event.stopPropagation();
+  //     event.preventDefault();
+  //     onDelete(product.id);
+  //   },
+  //   [onDelete, product.id]
+  // );
 
   const handleAddFavorite = useCallback((event: React.MouseEvent) => {
     event.preventDefault();
@@ -30,11 +35,11 @@ function ProductCard({
   }, []);
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 300, marginTop: 2 }}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
+          height="210"
           image={product.img}
           alt="Product Foto"
         />
@@ -43,7 +48,7 @@ function ProductCard({
             {product.name}
           </Typography>
           <Typography gutterBottom variant="h5" component="div">
-            {product.price}
+            Цена: {product.price}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {product.description}
@@ -51,15 +56,20 @@ function ProductCard({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button
-          size="small"
-          color="primary"
-          type="button"
-          onClick={handleAddFavorite}
-        >
-          Добавить в избранное
-        </Button>
-        <Button type="button" onClick={handleRemove}>
+        {user ? (
+          <Button
+            size="small"
+            color="primary"
+            type="button"
+            onClick={handleAddFavorite}
+          >
+            Добавить в избранное
+          </Button>
+        ) : (
+          <></>
+        )}
+        {/* СДЕЛАТЬ Админку*/}
+        <Button type="button" onClick={clickDelete}>
           Удалить
         </Button>
       </CardActions>

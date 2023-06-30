@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Products',
         key: 'id',
       },
+      onDelete: 'CASCADE',
     },
     user_id: {
       allowNull: false,
@@ -35,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Users',
         key: 'id',
       },
+      onDelete: 'CASCADE',
     },
     createdAt: {
       allowNull: false,

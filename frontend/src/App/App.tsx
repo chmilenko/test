@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Layout from "../Components/layout/Layout";
 import Registration from "../Features/Auth/Registration";
@@ -12,11 +11,12 @@ import ProductView from "../Features/Products/ProductView";
 import { loadProductList } from "../Features/Products/productSlice";
 import FavoriteView from "../Features/Favorites/FavoriteView";
 import { loadSavedProducts } from "../Features/Favorites/favoritesSlice";
+import "./App.sass";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const authChecked = useSelector(selectAuthChecked);
-
+  
   useEffect(() => {
     dispatch(getUser());
     dispatch(loadProductList());
@@ -26,7 +26,7 @@ function App(): JSX.Element {
   if (!authChecked) {
     return (
       <div>
-        <span>Loading ...</span>
+        <span>Загрузка ...</span>
       </div>
     );
   }

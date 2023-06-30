@@ -1,20 +1,16 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import ProductCard from "./ProductCard";
 import Form from "./Form/Form";
 import { RootState, useAppDispatch } from "../../store";
 import { useSelector } from "react-redux";
-import { delProduct, loadProductList } from "./productSlice";
+import { delProduct } from "./productSlice";
 import { ProductId } from "./types/productType";
-import { addNewSavedProduct } from "../Favorites/api";
+// import "./Css/Product.sass";
 
 function ProductView(): JSX.Element {
   const { products } = useSelector((store: RootState) => store.products);
 
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(loadProductList());
-  }, [dispatch]);
 
   const handleDeleteProduct = useCallback(
     (id: ProductId) => {
@@ -24,15 +20,17 @@ function ProductView(): JSX.Element {
   );
 
   return (
-    <div>
+    <div className="productView">
       <Form />
-      {products.map((product) => (
-        <ProductCard
-          product={product}
-          key={product.id}
-          onDelete={handleDeleteProduct}
-        />
-      ))}
+      <div className="productsCard">
+        {products.map((product) => (
+          <ProductCard
+            product={product}
+            key={product.id}
+            onDelete={handleDeleteProduct}
+          />
+        ))}
+      </div>
     </div>
   );
 }

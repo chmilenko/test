@@ -24,14 +24,16 @@ function FavoriteView(): JSX.Element {
   }, [dispatch]);
 
   return (
-    <div>
-      {favoritesArr.map((favorite) => (
-        <FavoriteCard
-          favorite={favorite}
-          key={favorite.id}
-          onDeleteFavorite={handleDeleteFavorite}
-        />
-      ))}
+    <div className="favoriteView">
+      <div className="productsCardFavorite">
+        {favoritesArr.map((favorite) => (
+          <FavoriteCard
+            favorite={favorite}
+            key={favorite.id}
+            onDeleteFavorite={handleDeleteFavorite}
+          />
+        ))}
+      </div>
     </div>
   );
 }
