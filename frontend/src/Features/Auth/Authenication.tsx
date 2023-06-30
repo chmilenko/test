@@ -52,51 +52,49 @@ function Authenication(): JSX.Element {
   );
 
   return (
-    <div>
-      <div>
-        <div></div>
+    <div className="divFormAddProduct" style={{ marginTop: 50 }}>
+      <form onSubmit={handleSubmit} className="formAddProduct">
         <div>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="email">
-                Email address
-                <div className="mt-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={handleEmailChange}
-                  />
-                </div>
-              </label>
+          <label htmlFor="email">
+            <div className="mt-2">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                value={email}
+                onChange={handleEmailChange}
+                className="inputForm"
+                placeholder="Введите адрес электронной почты"
+              />
             </div>
-            <div>
-              <label htmlFor="password">
-                Password
-                <div>
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    value={password}
-                    onChange={handlePasswordChange}
-                  />
-                </div>
-              </label>
-            </div>
-
-            <div>
-              <button type="submit">Войти</button>
-            </div>
-            <div>
-              <p>{error}</p>
-            </div>
-          </form>
+          </label>
         </div>
-      </div>
+        <div>
+          <label htmlFor="password">
+            <div>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                value={password}
+                onChange={handlePasswordChange}
+                className="inputForm"
+                placeholder="Введите пароль"
+              />
+            </div>
+          </label>
+        </div>
+        <div>
+          <button type="submit" className="btnMain">
+            Войти
+          </button>
+        </div>
+        <div>
+          <p>{error}</p>
+        </div>
+      </form>
     </div>
   );
 }
