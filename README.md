@@ -12,6 +12,7 @@
 
 3.В другом терминале ввести команды: 
 
-  1. cd backend 
-  2. npm i 
-  3. npm run dev  
+  1. cd backend
+  2. В папке backend переименовать файл .env.sample в .env
+  3. npm i 
+  4. npm run dev  
