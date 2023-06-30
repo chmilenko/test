@@ -11,6 +11,7 @@
   3. npm start
 
 3.В другом терминале ввести команды: 
+
   1. cd backend
-  2.npm i
-  3.npm run dev  
+  2. npm i
+  3. npm run dev  
