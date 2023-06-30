@@ -1,22 +1,27 @@
-const { sequelize } = require('../models');
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Saveds', {
+    await queryInterface.createTable('Products', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      product_id: {
+      name: {
+        type: Sequelize.TEXT,
         allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Products',
-          key: 'id',
-        },
+      },
+      price: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      img: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      description: {
+        type: Sequelize.TEXT,
       },
       user_id: {
         allowNull: false,
@@ -25,6 +30,7 @@ module.exports = {
           model: 'Users',
           key: 'id',
         },
+        onDelete: 'cascade',
       },
       createdAt: {
         allowNull: false,
@@ -36,7 +42,7 @@ module.exports = {
       },
     });
   },
-  async down(queryInterface) {
-    await queryInterface.dropTable('Saveds');
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Products');
   },
 };
