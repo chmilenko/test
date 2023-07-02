@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import Layout from "../Components/layout/Layout";
+import Layout from "../Components/Layout/Layout";
 import Registration from "../Features/Auth/Registration";
 import Authenication from "../Features/Auth/Authenication";
 import { getUser } from "../Features/Auth/authSlice";

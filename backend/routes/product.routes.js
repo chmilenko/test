@@ -36,7 +36,6 @@ productRouter.delete('/:id', async (req, res) => {
     await Product.destroy({
       where: {
         id,
-        user_id: req.session.userId,
       },
     });
     res.status(201).json(id);
