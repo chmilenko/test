@@ -17,9 +17,11 @@ function ProductCard({
   onDelete: (id: ProductId) => void;
 }): JSX.Element {
   const { user } = useSelector((store: RootState) => store.auth);
+
   const clickDelete = () => {
     alert("Только админ может удалять товар");
   };
+
   // const handleRemove = useCallback(
   //   (event: React.MouseEvent) => {
   //     event.stopPropagation();
@@ -39,7 +41,7 @@ function ProductCard({
       <CardActionArea>
         <CardMedia
           component="img"
-          height="210"
+          height="300"
           image={product.img}
           alt="Product Foto"
         />

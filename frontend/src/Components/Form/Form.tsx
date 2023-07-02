@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { RootState, useAppDispatch } from "../../../store";
-import { addNewProduct } from "../productSlice";
+import { RootState, useAppDispatch } from "../../store";
+import { addNewProduct } from "../../Features/Products/productSlice";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";

@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import ProductCard from "./ProductCard";
-import Form from "./Form/Form";
+import Form from "../../Components/Form/Form";
 import { RootState, useAppDispatch } from "../../store";
 import { useSelector } from "react-redux";
 import { delProduct } from "./productSlice";
